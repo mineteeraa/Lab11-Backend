@@ -10,12 +10,23 @@ import se331.lab.rest.repository.OrganizerRepository;
 import java.util.Optional;
 
 @Repository
-public class OrganizerDaoImpl implements OrganizerDao{
+public class OrganizerDaoImpl implements OrganizerDao {
     @Autowired
     OrganizerRepository organizerRepository;
+
     @Override
     public Page<Organizer> getOrganizer(Pageable pageRequest) {
         return organizerRepository.findAll(pageRequest);
+    }
+
+    @Override
+    public Organizer getOrganizer(Long id) {
+        return organizerRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Organizer save(Organizer organizer) {
+        return organizerRepository.save(organizer);
     }
 
     @Override
